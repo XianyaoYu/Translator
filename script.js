@@ -179,3 +179,52 @@ icons.forEach((icon) => {
     }
   });
 });
+
+const texts = [
+    '辉煌',
+    '欢乐',
+    '创造性',
+    '快乐',
+    '和谐',
+    '优秀',
+    '奇妙',
+    '勇敢',
+    '神奇',
+    '迷人',
+    '强烈',
+    '灵感',
+    '神秘',
+    '令人惊叹',
+    '乐观'
+];
+
+document.body.addEventListener('click', function(event) {
+    createText(event);
+});
+
+function getRandomText() {
+    return texts[Math.floor(Math.random() * texts.length)];
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function createText(event) {
+    const text = document.createElement('div');
+    const randomColor = getRandomColor();
+    text.className = 'floating-text';
+    text.innerText = getRandomText();
+    text.style.left = event.clientX + 'px';
+    text.style.top = event.clientY + 'px';
+    text.style.color = randomColor;
+    document.body.appendChild(text);
+    setTimeout(() => {
+        text.remove();
+    }, 500);
+}
